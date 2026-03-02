@@ -46,7 +46,7 @@ spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the project maintainer at **[GitHub Issues](https://github.com/koala73/worldmonitor/issues)** or by contacting the
+reported to the project maintainer at **[GitHub Issues](https://github.com/Dexmond-Technologies/worldmonitor/issues)** or by contacting the
 repository owner directly through GitHub.
 
 All complaints will be reviewed and investigated promptly and fairly. The project

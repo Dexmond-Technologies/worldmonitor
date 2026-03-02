@@ -329,7 +329,7 @@ test.describe('desktop runtime routing guardrails', () => {
         __TAURI__?: { core?: { invoke?: (command: string) => Promise<unknown> } };
       };
       const previousTauri = globalWindow.__TAURI__;
-      const releaseUrl = 'https://github.com/koala73/worldmonitor/releases/latest';
+      const releaseUrl = 'https://github.com/Dexmond-Technologies/worldmonitor/releases/latest';
 
       const updaterProto = DesktopUpdater.prototype as unknown as {
         resolveUpdateDownloadUrl: (releaseUrl: string) => Promise<string>;
@@ -378,7 +378,7 @@ test.describe('desktop runtime routing guardrails', () => {
 
     expect(result.macArm).toBe('https://worldmonitor.app/api/download?platform=macos-arm64&variant=full');
     expect(result.windowsX64).toBe('https://worldmonitor.app/api/download?platform=windows-exe&variant=full');
-    expect(result.linuxFallback).toBe('https://github.com/koala73/worldmonitor/releases/latest');
+    expect(result.linuxFallback).toBe('https://github.com/Dexmond-Technologies/worldmonitor/releases/latest');
   });
 
   test('MapContainer falls back to SVG when WebGL2 is unavailable', async ({ page }) => {

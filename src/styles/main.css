@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import './rtl-overrides.css';
 @import './panels.css';
 
@@ -5,25 +6,25 @@
    Theme Colors — overridden by [data-theme="light"] below
    ============================================================ */
 :root {
-  /* Backgrounds */
-  --bg: #0a0a0a;
-  --bg-secondary: #111;
-  --surface: #141414;
-  --surface-hover: #1e1e1e;
-  --surface-active: #1a1a2e;
+  /* Backgrounds — Dexmond Technologies navy palette */
+  --bg: #0F172A;
+  --bg-secondary: #0B1220;
+  --surface: #0D1526;
+  --surface-hover: #132038;
+  --surface-active: #1a2a4e;
 
   /* Borders */
-  --border: #2a2a2a;
-  --border-strong: #444;
-  --border-subtle: #1a1a1a;
+  --border: #1E2D45;
+  --border-strong: #2E4060;
+  --border-subtle: #162035;
 
   /* Text */
   --text: #e8e8e8;
   --text-secondary: #ccc;
-  --text-dim: #888;
-  --text-muted: #666;
-  --text-faint: #555;
-  --text-ghost: #444;
+  --text-dim: #8899BB;
+  --text-muted: #6677AA;
+  --text-faint: #445588;
+  --text-ghost: #334466;
   --accent: #fff;
 
   /* Overlays & shadows */
@@ -37,25 +38,25 @@
   --darken-heavy: rgba(0, 0, 0, 0.3);
 
   /* Scrollbar */
-  --scrollbar-thumb: #333;
-  --scrollbar-thumb-hover: #555;
+  --scrollbar-thumb: #1E2D45;
+  --scrollbar-thumb-hover: #2E4060;
 
   /* Input */
-  --input-bg: #1a1a1a;
+  --input-bg: #0D1526;
 
   /* Panels */
-  --panel-bg: #141414;
-  --panel-border: #2a2a2a;
+  --panel-bg: #0D1526;
+  --panel-border: #1E2D45;
 
   /* Map */
-  --map-bg: #020a08;
-  --map-grid: #0a2a20;
-  --map-country: #0a2018;
-  --map-stroke: #0f5040;
+  --map-bg: #08101E;
+  --map-grid: #0F2040;
+  --map-country: #0A1830;
+  --map-stroke: #2563EB;
 
-  /* Font stack */
-  --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
-  --font-body: var(--font-mono);
+  /* Font stack — Inter primary (Dexmond Technologies brand font) */
+  --font-mono: 'Inter', 'SF Mono', 'Monaco', 'Cascadia Code', 'Fira Code', 'DejaVu Sans Mono', 'Liberation Mono', monospace;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 [dir="rtl"] {
@@ -366,10 +367,26 @@ canvas,
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1.5px;
   color: var(--accent);
+  font-family: 'Inter', system-ui, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logo-dexmond {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.logo-tech {
+  color: #2563EB;
+  font-weight: 600;
+  letter-spacing: 1.5px;
 }
 
 .version {

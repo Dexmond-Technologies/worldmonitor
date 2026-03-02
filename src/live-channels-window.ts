@@ -71,7 +71,7 @@ export function initLiveChannelsWindow(containerEl?: HTMLElement): void {
   if (!appEl) return;
 
   if (!containerEl) {
-    document.title = `${t('components.liveNews.manage') ?? 'Channel management'} - World Monitor`;
+    document.title = `${t('components.liveNews.manage') ?? 'Channel management'} – World Monitor by Dexmond Technologies`;
   }
 
   let channels = loadChannelsFromStorage();
