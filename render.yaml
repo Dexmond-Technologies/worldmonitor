@@ -2,8 +2,10 @@ services:
   - type: web
     name: world-monitor
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npm run build:desktop
     startCommand: npm start
     envVars:
-      - key: NODE_VERSION
-        value: ~20
+      - key: node_version
+        value: 18.20.0
+      - key: VITE_VARIANT
+        value: full
