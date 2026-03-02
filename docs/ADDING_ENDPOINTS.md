@@ -1,10 +1,10 @@
 # Adding API Endpoints
 
-All JSON API endpoints in WorldMonitor **must** use sebuf. Do not create standalone `api/*.js` files — the legacy pattern is deprecated and being removed.
+All JSON API endpoints in WORLD_MONITOR **must** use sebuf. Do not create standalone `api/*.js` files — the legacy pattern is deprecated and being removed.
 
 This guide walks through adding a new RPC to an existing service and adding an entirely new service.
 
-> **Important:** After modifying any `.proto` file, you **must** run `make generate` before building or pushing. The generated TypeScript files in `src/generated/` are checked into the repo and must stay in sync with the proto definitions. CI does not run generation yet — this is your responsibility until we add it to the pipeline (see [#200](https://github.com/Dexmond-Technologies/worldmonitor/issues/200)).
+> **Important:** After modifying any `.proto` file, you **must** run `make generate` before building or pushing. The generated TypeScript files in `src/generated/` are checked into the repo and must stay in sync with the proto definitions. CI does not run generation yet — this is your responsibility until we add it to the pipeline (see [#200](https://github.com/Dexmond-Technologies/WORLD_MONITOR/issues/200)).
 
 ## Prerequisites
 
@@ -40,14 +40,14 @@ Example: adding `GetEarthquakeDetails` to `SeismologyService`.
 
 ### 1. Define the request/response messages
 
-Create `proto/worldmonitor/seismology/v1/get_earthquake_details.proto`:
+Create `proto/WORLD_MONITOR/seismology/v1/get_earthquake_details.proto`:
 
 ```protobuf
 syntax = "proto3";
-package worldmonitor.seismology.v1;
+package WORLD_MONITOR.seismology.v1;
 
 import "buf/validate/validate.proto";
-import "worldmonitor/seismology/v1/earthquake.proto";
+import "WORLD_MONITOR/seismology/v1/earthquake.proto";
 
 // GetEarthquakeDetailsRequest specifies which earthquake to retrieve.
 message GetEarthquakeDetailsRequest {
@@ -68,10 +68,10 @@ message GetEarthquakeDetailsResponse {
 
 ### 2. Add the RPC to the service definition
 
-Edit `proto/worldmonitor/seismology/v1/service.proto`:
+Edit `proto/WORLD_MONITOR/seismology/v1/service.proto`:
 
 ```protobuf
-import "worldmonitor/seismology/v1/get_earthquake_details.proto";
+import "WORLD_MONITOR/seismology/v1/get_earthquake_details.proto";
 
 service SeismologyService {
   // ... existing RPCs ...
@@ -93,7 +93,7 @@ At this point, `npx tsc --noEmit` will **fail** because the handler doesn't impl
 
 ### 4. Implement the handler
 
-Create `server/worldmonitor/seismology/v1/get-earthquake-details.ts`:
+Create `server/WORLD_MONITOR/seismology/v1/get-earthquake-details.ts`:
 
 ```typescript
 import type {
@@ -101,7 +101,7 @@ import type {
   ServerContext,
   GetEarthquakeDetailsRequest,
   GetEarthquakeDetailsResponse,
-} from '../../../../src/generated/server/worldmonitor/seismology/v1/service_server';
+} from '../../../../src/generated/server/WORLD_MONITOR/seismology/v1/service_server';
 
 export const getEarthquakeDetails: SeismologyServiceHandler['getEarthquakeDetails'] = async (
   _ctx: ServerContext,
@@ -133,10 +133,10 @@ export const getEarthquakeDetails: SeismologyServiceHandler['getEarthquakeDetail
 
 ### 5. Wire it into the handler re-export
 
-Edit `server/worldmonitor/seismology/v1/handler.ts`:
+Edit `server/WORLD_MONITOR/seismology/v1/handler.ts`:
 
 ```typescript
-import type { SeismologyServiceHandler } from '../../../../src/generated/server/worldmonitor/seismology/v1/service_server';
+import type { SeismologyServiceHandler } from '../../../../src/generated/server/WORLD_MONITOR/seismology/v1/service_server';
 
 import { listEarthquakes } from './list-earthquakes';
 import { getEarthquakeDetails } from './get-earthquake-details';
@@ -166,16 +166,16 @@ Example: adding a `SanctionsService`.
 ### 1. Create the proto directory
 
 ```
-proto/worldmonitor/sanctions/v1/
+proto/WORLD_MONITOR/sanctions/v1/
 ```
 
 ### 2. Define entity messages
 
-Create `proto/worldmonitor/sanctions/v1/sanctions_entry.proto`:
+Create `proto/WORLD_MONITOR/sanctions/v1/sanctions_entry.proto`:
 
 ```protobuf
 syntax = "proto3";
-package worldmonitor.sanctions.v1;
+package WORLD_MONITOR.sanctions.v1;
 
 import "buf/validate/validate.proto";
 import "sebuf/http/annotations.proto";
@@ -200,15 +200,15 @@ message SanctionsEntry {
 
 ### 3. Define request/response messages
 
-Create `proto/worldmonitor/sanctions/v1/list_sanctions.proto`:
+Create `proto/WORLD_MONITOR/sanctions/v1/list_sanctions.proto`:
 
 ```protobuf
 syntax = "proto3";
-package worldmonitor.sanctions.v1;
+package WORLD_MONITOR.sanctions.v1;
 
 import "buf/validate/validate.proto";
-import "worldmonitor/core/v1/pagination.proto";
-import "worldmonitor/sanctions/v1/sanctions_entry.proto";
+import "WORLD_MONITOR/core/v1/pagination.proto";
+import "WORLD_MONITOR/sanctions/v1/sanctions_entry.proto";
 
 // ListSanctionsRequest specifies filters for sanctions data.
 message ListSanctionsRequest {
@@ -217,7 +217,7 @@ message ListSanctionsRequest {
   // Filter by country code.
   string country_code = 2 [(buf.validate.field).string.max_len = 2];
   // Pagination parameters.
-  worldmonitor.core.v1.PaginationRequest pagination = 3;
+  WORLD_MONITOR.core.v1.PaginationRequest pagination = 3;
 }
 
 // ListSanctionsResponse contains the matching sanctions entries.
@@ -225,20 +225,20 @@ message ListSanctionsResponse {
   // The list of sanctions entries.
   repeated SanctionsEntry entries = 1;
   // Pagination metadata.
-  worldmonitor.core.v1.PaginationResponse pagination = 2;
+  WORLD_MONITOR.core.v1.PaginationResponse pagination = 2;
 }
 ```
 
 ### 4. Define the service
 
-Create `proto/worldmonitor/sanctions/v1/service.proto`:
+Create `proto/WORLD_MONITOR/sanctions/v1/service.proto`:
 
 ```protobuf
 syntax = "proto3";
-package worldmonitor.sanctions.v1;
+package WORLD_MONITOR.sanctions.v1;
 
 import "sebuf/http/annotations.proto";
-import "worldmonitor/sanctions/v1/list_sanctions.proto";
+import "WORLD_MONITOR/sanctions/v1/list_sanctions.proto";
 
 // SanctionsService provides APIs for international sanctions monitoring.
 service SanctionsService {
@@ -262,19 +262,19 @@ make check   # lint + generate in one step
 Create the handler directory and files:
 
 ```
-server/worldmonitor/sanctions/v1/
+server/WORLD_MONITOR/sanctions/v1/
 ├── handler.ts               # thin re-export
 └── list-sanctions.ts        # RPC implementation
 ```
 
-`server/worldmonitor/sanctions/v1/list-sanctions.ts`:
+`server/WORLD_MONITOR/sanctions/v1/list-sanctions.ts`:
 ```typescript
 import type {
   SanctionsServiceHandler,
   ServerContext,
   ListSanctionsRequest,
   ListSanctionsResponse,
-} from '../../../../src/generated/server/worldmonitor/sanctions/v1/service_server';
+} from '../../../../src/generated/server/WORLD_MONITOR/sanctions/v1/service_server';
 
 export const listSanctions: SanctionsServiceHandler['listSanctions'] = async (
   _ctx: ServerContext,
@@ -285,9 +285,9 @@ export const listSanctions: SanctionsServiceHandler['listSanctions'] = async (
 };
 ```
 
-`server/worldmonitor/sanctions/v1/handler.ts`:
+`server/WORLD_MONITOR/sanctions/v1/handler.ts`:
 ```typescript
-import type { SanctionsServiceHandler } from '../../../../src/generated/server/worldmonitor/sanctions/v1/service_server';
+import type { SanctionsServiceHandler } from '../../../../src/generated/server/WORLD_MONITOR/sanctions/v1/service_server';
 
 import { listSanctions } from './list-sanctions';
 
@@ -301,8 +301,8 @@ export const sanctionsHandler: SanctionsServiceHandler = {
 Edit `api/[[...path]].js` — add the import and mount the routes:
 
 ```typescript
-import { createSanctionsServiceRoutes } from '../src/generated/server/worldmonitor/sanctions/v1/service_server';
-import { sanctionsHandler } from './server/worldmonitor/sanctions/v1/handler';
+import { createSanctionsServiceRoutes } from '../src/generated/server/WORLD_MONITOR/sanctions/v1/service_server';
+import { sanctionsHandler } from './server/WORLD_MONITOR/sanctions/v1/handler';
 
 const allRoutes = [
   // ... existing routes ...
@@ -323,7 +323,7 @@ import {
   SanctionsServiceClient,
   type SanctionsEntry,
   type ListSanctionsResponse,
-} from '@/generated/client/worldmonitor/sanctions/v1/service_client';
+} from '@/generated/client/WORLD_MONITOR/sanctions/v1/service_client';
 import { createCircuitBreaker } from '@/utils';
 
 export type { SanctionsEntry };
@@ -404,11 +404,11 @@ Reuse these instead of redefining:
 
 | Type | Import | Use for |
 |------|--------|---------|
-| `GeoCoordinates` | `worldmonitor/core/v1/geo.proto` | Any lat/lon location (has built-in -90/90 and -180/180 bounds) |
-| `BoundingBox` | `worldmonitor/core/v1/geo.proto` | Spatial filtering |
-| `TimeRange` | `worldmonitor/core/v1/time.proto` | Time-based filtering (has `INT64_ENCODING_NUMBER`) |
-| `PaginationRequest` | `worldmonitor/core/v1/pagination.proto` | Request pagination (has page_size 1-100 constraint) |
-| `PaginationResponse` | `worldmonitor/core/v1/pagination.proto` | Response pagination metadata |
+| `GeoCoordinates` | `WORLD_MONITOR/core/v1/geo.proto` | Any lat/lon location (has built-in -90/90 and -180/180 bounds) |
+| `BoundingBox` | `WORLD_MONITOR/core/v1/geo.proto` | Spatial filtering |
+| `TimeRange` | `WORLD_MONITOR/core/v1/time.proto` | Time-based filtering (has `INT64_ENCODING_NUMBER`) |
+| `PaginationRequest` | `WORLD_MONITOR/core/v1/pagination.proto` | Request pagination (has page_size 1-100 constraint) |
+| `PaginationResponse` | `WORLD_MONITOR/core/v1/pagination.proto` | Response pagination metadata |
 
 ### Comments
 

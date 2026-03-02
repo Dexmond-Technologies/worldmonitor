@@ -1,14 +1,14 @@
 // Non-sebuf: returns XML/HTML, stays as standalone Vercel function
 export const config = { runtime: 'edge' };
 
-const RELEASES_URL = 'https://api.github.com/repos/Dexmond-Technologies/worldmonitor/releases/latest';
+const RELEASES_URL = 'https://api.github.com/repos/Dexmond-Technologies/WORLD_MONITOR/releases/latest';
 
 export default async function handler() {
   try {
     const res = await fetch(RELEASES_URL, {
       headers: {
         'Accept': 'application/vnd.github+json',
-        'User-Agent': 'WorldMonitor-Version-Check',
+        'User-Agent': 'WORLD_MONITOR-Version-Check',
       },
     });
 

@@ -16,10 +16,10 @@ Thank you for helping spread the word about World Monitor! This guide provides t
 
 | Link | Description |
 |------|-------------|
-| [worldmonitor.app](https://worldmonitor.app) | Main dashboard — geopolitics, military, conflicts |
-| [tech.worldmonitor.app](https://tech.worldmonitor.app) | Tech variant — startups, AI/ML, cybersecurity |
-| [finance.worldmonitor.app](https://finance.worldmonitor.app) | Finance variant — markets, exchanges, central banks |
-| [GitHub](https://github.com/Dexmond-Technologies/worldmonitor) | Source code (AGPL-3.0) |
+| [WORLD_MONITOR.app](https://WORLD_MONITOR.app) | Main dashboard — geopolitics, military, conflicts |
+| [tech.WORLD_MONITOR.app](https://tech.WORLD_MONITOR.app) | Tech variant — startups, AI/ML, cybersecurity |
+| [finance.WORLD_MONITOR.app](https://finance.WORLD_MONITOR.app) | Finance variant — markets, exchanges, central banks |
+| [GitHub](https://github.com/Dexmond-Technologies/WORLD_MONITOR) | Source code (AGPL-3.0) |
 
 ---
 

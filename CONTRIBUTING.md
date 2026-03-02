@@ -75,8 +75,8 @@ Variants share all code but differ in default panels, map layers, and RSS feeds.
 1. **Fork** the repository on GitHub
 2. **Clone** your fork locally:
    ```bash
-   git clone https://github.com/<your-username>/worldmonitor.git
-   cd worldmonitor
+   git clone https://github.com/<your-username>/WORLD_MONITOR.git
+   cd WORLD_MONITOR
    ```
 3. **Create a branch** for your work:
    ```bash
@@ -190,11 +190,11 @@ That said, **all code is held to the same quality bar regardless of how it was w
 ### File Organization
 
 - Static layer/geo data and variant configs go in `src/config/`
-- Sebuf handler implementations go in `server/worldmonitor/{domain}/v1/`
+- Sebuf handler implementations go in `server/WORLD_MONITOR/{domain}/v1/`
 - Edge function gateway and legacy endpoints go in `api/`
 - UI components (panels, map, modals) go in `src/components/`
 - Service modules (data fetching, client wrappers) go in `src/services/`
-- Proto definitions go in `proto/worldmonitor/{domain}/v1/`
+- Proto definitions go in `proto/WORLD_MONITOR/{domain}/v1/`
 
 ## Working with Sebuf (RPC Framework)
 
@@ -202,11 +202,11 @@ Sebuf is the project's custom Proto-first HTTP RPC framework — a lightweight a
 
 ### How It Works
 
-1. **Proto definitions** in `proto/worldmonitor/{domain}/v1/` define services and messages
+1. **Proto definitions** in `proto/WORLD_MONITOR/{domain}/v1/` define services and messages
 2. **Code generation** (`make generate`) produces:
    - TypeScript clients in `src/generated/client/` (e.g., `MarketServiceClient`)
    - Server route factories in `src/generated/server/` (e.g., `createMarketServiceRoutes`)
-3. **Handlers** in `server/worldmonitor/{domain}/v1/handler.ts` implement the service interface
+3. **Handlers** in `server/WORLD_MONITOR/{domain}/v1/handler.ts` implement the service interface
 4. **Gateway** in `api/[domain]/v1/[rpc].ts` registers all handlers and routes requests
 5. **Clients** in `src/services/{domain}/index.ts` wrap the generated client for app use
 
@@ -239,9 +239,9 @@ make install-plugins   # Install sebuf protoc-gen plugins (requires Go)
 To add a new data layer to the map:
 
 1. **Define the data source** — identify the API or dataset you want to integrate
-2. **Add the proto service** (if the data needs a backend proxy) — define messages and RPC methods in `proto/worldmonitor/{domain}/v1/`
+2. **Add the proto service** (if the data needs a backend proxy) — define messages and RPC methods in `proto/WORLD_MONITOR/{domain}/v1/`
 3. **Generate stubs** — run `make generate`
-4. **Implement the handler** in `server/worldmonitor/{domain}/v1/`
+4. **Implement the handler** in `server/WORLD_MONITOR/{domain}/v1/`
 5. **Register the handler** in `api/[domain]/v1/[rpc].ts` and `vite.config.ts` (for local dev)
 6. **Create the service module** in `src/services/{domain}/` wrapping the generated client
 7. **Add the layer config** and implement the map renderer following existing layer patterns
@@ -279,7 +279,7 @@ When filing a bug report, please include:
 - **Browser/OS** — your environment details
 - **Console errors** — any relevant browser console output
 
-Use the [Bug Report issue template](https://github.com/Dexmond-Technologies/worldmonitor/issues/new/choose) when available.
+Use the [Bug Report issue template](https://github.com/Dexmond-Technologies/WORLD_MONITOR/issues/new/choose) when available.
 
 ## Feature Requests
 
@@ -290,7 +290,7 @@ We welcome feature ideas! When suggesting a feature:
 - **Consider alternatives** you've thought about
 - **Provide context** — who would benefit from this feature?
 
-Use the [Feature Request issue template](https://github.com/Dexmond-Technologies/worldmonitor/issues/new/choose) when available.
+Use the [Feature Request issue template](https://github.com/Dexmond-Technologies/WORLD_MONITOR/issues/new/choose) when available.
 
 ## Code of Conduct
 

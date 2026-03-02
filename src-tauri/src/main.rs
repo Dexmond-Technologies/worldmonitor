@@ -48,7 +48,7 @@ const SUPPORTED_SECRET_KEYS: [&str; 23] = [
     "NASA_FIRMS_API_KEY",
     "OLLAMA_API_URL",
     "OLLAMA_MODEL",
-    "WORLDMONITOR_API_KEY",
+    "WORLD_MONITOR_API_KEY",
     "WTO_API_KEY",
     "AVIATIONSTACK_API",
 ];
@@ -663,8 +663,8 @@ fn build_app_menu(handle: &AppHandle) -> tauri::Result<Menu<tauri::Wry>> {
         name: Some("World Monitor".into()),
         version: Some(env!("CARGO_PKG_VERSION").into()),
         copyright: Some("\u{00a9} 2025 Elie Habib".into()),
-        website: Some("https://worldmonitor.app".into()),
-        website_label: Some("worldmonitor.app".into()),
+        website: Some("https://WORLD_MONITOR.app".into()),
+        website_label: Some("WORLD_MONITOR.app".into()),
         ..Default::default()
     };
     let about_item =
@@ -731,7 +731,7 @@ fn handle_menu_event(app: &AppHandle, event: tauri::menu::MenuEvent) {
             }
         }
         MENU_HELP_GITHUB_ID => {
-            let _ = open_in_shell("https://github.com/Dexmond-Technologies/worldmonitor");
+            let _ = open_in_shell("https://github.com/Dexmond-Technologies/WORLD_MONITOR");
         }
         #[cfg(feature = "devtools")]
         MENU_HELP_DEVTOOLS_ID => {
