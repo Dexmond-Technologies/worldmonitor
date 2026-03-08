@@ -63,3 +63,13 @@ bootstrap().catch(err => {
   console.error('[server.mjs] Boot failed:', err);
   process.exit(1);
 });
+
+// --- KEEP ALIVE PING ---
+// Ping the Nuclear War app every 30 seconds to prevent Render from sleeping
+setInterval(() => {
+  fetch('https://nuclearwar.onrender.com')
+    .then(res => {
+      // Keep alive successful
+    })
+    .catch(err => console.error('[KEEP-ALIVE] Failed to ping Nuclear War:', err.message));
+}, 30000);
